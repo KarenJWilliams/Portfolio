@@ -219,6 +219,12 @@ This project is open source and available for personal use. Feel free to customi
 - 💼 LinkedIn: [karen-joseph-williams-35987821a](https://www.linkedin.com/in/karen-joseph-williams-35987821a)
 - 📍 Location: Kerala, India 
 
+## 📸 Sample Images 
+![alt text](image.png)
+![alt text](image-1.png)
+![alt text](image-2.png)
+![alt text](image-3.png)
+![alt text](image-4.png)
 ## 🙏 Acknowledgments
 
 - Design inspired by modern web design trends
