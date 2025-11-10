@@ -3,261 +3,635 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karen Joseph Williams - Portfolio</title>
     <style>
-        table, th, td {
-          border:4px solid purple;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        /*body{
-        background-image:url("Wallpaper 4.jpg");
-        background-size: 100% 100%;
-        background-position: center;
-        background-repeat:no-repeat; 
-        height: 100vh; 
-        margin: 0; 
-        padding: 0;
-        }*/
 
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #8b5cf6;
+            --accent: #ec4899;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --gray: #64748b;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            padding: 0.5rem 0;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.15);
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6rem 2rem 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: drift 20s linear infinite;
+        }
+
+        @keyframes drift {
+            from { transform: translate(0, 0); }
+            to { transform: translate(50px, 50px); }
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            z-index: 1;
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero .highlight {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero h2 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.2s backwards;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: white;
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease 0.4s backwards;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-white {
+            background: white;
+            border-radius: 20px;
+            margin: 2rem;
+            box-shadow: 0 10px 60px rgba(0,0,0,0.1);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .info-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
+        }
+
+        .info-card h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .info-card p {
+            color: var(--gray);
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+            margin-top: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 3px;
+            background: linear-gradient(180deg, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-left: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -3.5rem;
+            top: 0;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: var(--primary);
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+        }
+
+        .timeline-item h3 {
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Portfolio/Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            border-color: var(--accent);
+        }
+
+        .project-number {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .project-card h3 {
+            color: var(--dark);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .skill-item {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .skill-item:hover {
+            transform: scale(1.05) rotate(2deg);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+        }
+
+        .skill-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Contact */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .contact-card h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-card a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            word-break: break-word;
+            display: block;
+        }
+
+        .contact-card p {
+            word-break: break-word;
+        }
+
+        .contact-card a:hover {
+            color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .timeline {
+                padding-left: 2rem;
+            }
+        }
     </style>
-    
-    <link rel="stylesheet" href="index4.css">
 </head>
 <body>
-    <div class="container">
-        
-    <h1><br>HOME PAGE</h1><br>
-    <h2>Welcome to my website!!! <br> Here we shall see all about myself </h2>
-    <main class="l-main">
-        <!--===== HOME =====-->
-        <section class="home bd-grid" id="home">
-            <div class="home__data">
-                <h1 class="home__title"><br>By the way,<br>I'm <span class="home__title-color">Karen.</span></h1>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-content">
+            <div class="logo">KJW</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h2>Welcome to my Portfolio!</h2>
+            <h1>I'm <span class="highlight">Karen</span></h1>
+            <h2>Student • Developer • Aspiring Tech Enthusiast</h2>
+            <a href="#about" class="cta-button">Explore My Journey</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <div class="section-white">
+        <section id="about">
+            <h2 class="section-title">About Me</h2>
+            
+            <div class="about-grid">
+                <div class="info-card">
+                    <h3>👤 Name</h3>
+                    <p>Karen Joseph Williams</p>
+                </div>
+                <div class="info-card">
+                    <h3>🎓 Register Number</h3>
+                    <p>22BCE2797</p>
+                </div>
+                <div class="info-card">
+                    <h3>🎂 Age</h3>
+                    <p>20 years</p>
+                </div>
+                <div class="info-card">
+                    <h3>❤️ Hobbies</h3>
+                    <p>Reading, Public Speaking, Drawing</p>
+                </div>
+            </div>
+
+            <div style="margin-top: 3rem;">
+                <h3 style="color: var(--primary); font-size: 1.8rem; margin-bottom: 2rem; text-align: center;">Education Timeline</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h3>2008 - 2019</h3>
+                        <p>Studied at Indian Community School Kuwait (ICSK) from LKG to 10th grade</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h3>2020 - 2022</h3>
+                        <p>Completed 11th and 12th at Assisi Vidyaniketan Public School, Kakkanad</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h3>2022 - 2026 (Current)</h3>
+                        <p>Pursuing B.Tech at Vellore Institute of Technology (VIT), Vellore</p>
+                    </div>
+                </div>
             </div>
         </section>
-    <div class="imag1">   
-        <img src="Karen JW.jpg" id="image1" >
-    </div> 
-
-
     </div>
-    <section class="section">
-        <div class="section-header1">
-        <a href="#About" >|  About Me  |</a>    
-        
-        <a href="#Portfolio" >|  Portfolio  |</a> 
-        
-        <a href="#Skills" >|  Skills  |</a> 
-        
-        <a href="#Testimonials" >|  Testimonials  |</a> 
-        
-        <a href="#Resume" >|  Resume  |</a> 
-        
-        <a href="#Contact2" >|  Contact  |</a>
-        </div>   
-    </section>
-    </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
 
-
-    
-    <div class="container" id="About">
-    <header>
-    <h1>ABOUT ME</h1>    
-    <br>
-    <h3><h2>Name:</h2>Karen Joseph Williams<br><h2>Register number:</h2>22BCE2797<br><h2>Age:</h2>20<br><h2>Hobbies:</h2>Reading,Public Speaking,Drawing.</h3>
-    </header>
-    <section class="section" >
-    <div class="section-header" >    
-    <p><h2>Work Experience:</h2>Nil.</p><br>
-    <h1>Education Timeline:</h1><br>
-    <p> <h2>2008-2019:</h2>Studied in Indian Community School Kuwait(ICSK) from LKG to 10th,</p>
-    <p><h2>2020-2022:</h2>Studied in Assisi Vidyaniketan Public School,Kakkanad for 11th and 12th. </p>
-    <p><h2>2022-2026(Current):</h2>Pursuing B.Tech in Vellore Institute of Technology,Vellore (VIT) </p>
-    <h2>Would you like to check my linkedin?</h2>
-    <a href="www.linkedin.com/in/karen-joseph-williams-35987821a" target="_blank">My LinkedIn profile</a>
-    </section>
-    </div>
-    <div class="container" id="Portfolio">
-        <header>
-        <h1>PORTFOLIO</h1>    
-        <br>    
-        <br>
-        <br>
-        <br>
-        <h1>A small mention of the top 3 projects that I have done recently:</h1>
-        </header>
-        
-        <ol>
-            <section class="section" id="Portfolio">
-                <div class="section-header">
-            <li><h2>Library Management:</h2><br>I have created a library code using Python and Mysql<br> </li><br>
-            <li><h2>Airplane Booking:</h2><br>I have created a booking code using Python and Mysql</li><br>
-        
-            <li><h2>Taxi Booking:</h2><br>I have created a booking code for cab using Python and Mysql</li><br>
+    <!-- Portfolio Section -->
+    <div class="section-white">
+        <section id="portfolio">
+            <h2 class="section-title">Portfolio</h2>
+            <p style="text-align: center; color: var(--gray); margin-bottom: 2rem;">My top 3 recent projects</p>
+            
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-number">1</div>
+                    <h3>Song Recommendation System (ML&DL)</h3>
+                    <p> Deep Learning and Machine Learning techniques to analyze a Spotify dataset</p>
+                </div>
+                <div class="project-card">
+                    <div class="project-number">2</div>
+                    <h3>Employee Management System (CI/CD)</h3>
+                    <p>Spring Boot Employee Management Application</p>
+                </div>
+                <div class="project-card">
+                    <div class="project-number">3</div>
+                    <h3>Customer Churn Prediction (ML)</h3>
+                    <p>A Data Science Project built using Python, Machine Learning, and Streamlit to predict customer churn based on demographic and service-related data.</p>
+                </div>
+            </div>
         </section>
-        </ol>
-    </div>
-    <br>
-    <br>
-    <br>
-    <div class="container" id="Skills">
-        <header>
-    <h1>SKILLS</h1>        
-    <br>        
-    <h1>I have acquired quite a few skills during by time in college.They are:<br></h1><br>
-    <ul>
-        <li><h2>Java:</h2>I have basic knowledge and experience with Java.</li><br>
-        <li><h2>Python:</h2>I have standard knowledge of this programming language.I have done a project using this.</li><br>
-        <li><h2>C:</h2>I have fundamental knowledge of this language.</li><br>
-        <li><h2>C++:</h2>I have core knowledge of this language</li><br>
-        <li><h2>HTML:</h2>I have initial knowledge of this programming language and I am currently trying to expand my knowledge in this language.</li><br>
- 
-    </ul>
-    </header>
-    </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br> 
-    <div class="container" id="Testimonials">
-        <header>  
-    <h1>TESTIMONIALS</h1>       
-    <br> 
-    <h3>My best projects so far done are:</h3>
-     </header>
-    <section class="section" >
-        <div class="section-header">
-    <h2>1.Library Management<br>2.Airplane Booking<br>3.Taxi Booking</h2>
-    </section>
-    </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <div class="container" id="Resume">
-    <h1>RESUME</h1>
-    <br>    
-    <header>
-        <h1>Karen Joseph Williams</h1>
-        <p>Email:karenjosephwilliams@gmail.com | Phone:(0091)8113015240 |LinkedIn:</p>
-        <a href="karen-joseph-williams-35987821a">Karen Joseph Williams</a>
-    </header> 
-    <section class="section" >
-        <div class="section-header">
-            <h2>Summary</h2>
-        </div>
-        <section class="section">
-            <div class="section-header2">
-        <p>I am currently a student of VIT,Vellore and I am currently well-versed with Python,C,C++ and Java.My carrer objective<br> would be to learn as much as possible and search new sectors of computer science</p>
-            </div>
-        </section> 
-    <section class="section">
-        <div class="section-header">
-            <h2>Education</h2>
-        </div>
-        <section class="section">
-            <div class="section-header2">
-        <h3><h2>Degree:</h2>B.tech <strong>(pursuing)</strong><br></h3>
-        <h3><h2>University Name:</h2></h3>Vellore Institute of Technology<br>
-        <h3><h2>Location:</h2></h3>Vellore,Tamil Nadu<br></p>
-            </div>
-        
-    </section>
-    
-    <section class="section">
-        <div class="section-header">
-            <h2>Skills</h2>
-        </div>
-        <section class="section">
-            <div class="section-header2">
-        <p>List your key skills relevant to the position you're seeking.</p>
-        <ul>
-            <li>Java</li>
-            <li>Python</li>
-            <li>C</li>
-            <li>C++</li>
-            
-        </ul>
-            </div>
-    </section>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <div class="container" id="Contact2">
-        <section class="section">
-            <div class="section-header4">    
-    <h1>CONTACT</h1>
-            </div>
-            <div class="section-header2">
-            
-    <br>
-    <header>
-    <h2>Here are my contact details:</h2><br>
-    <h2>Do feel free to text me using whatsapp </h2>
-    <h2>or email me at:</h2><br>
-        <table style="width:100%">
-            <tr>
-              <th>Email</th>
-              <th>Mobile no</th>
-              <th>Address pincode</th>
-              <th>Linkedin</th>
-            </tr>
-            <tr>
-              <td>karenjosephwilliams@gmail.com</td>
-              <td>8113015240</td>
-              <td>682021</td>
-              <td><a href="karen-joseph-williams-35987821a">Karen Joseph Williams</a></td>
-            </tr>
-        </table>  
-            </div>
-        
-    </header>
     </div>
 
+    <!-- Skills Section -->
+    <div class="section-white">
+        <section id="skills">
+            <h2 class="section-title">Skills</h2>
+            
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <h3>Java</h3>
+                    <p>Basic Knowledge</p>
+                </div>
+                <div class="skill-item">
+                    <h3>Python</h3>
+                    <p>Standard Knowledge</p>
+                </div>
+                <div class="skill-item">
+                    <h3>C</h3>
+                    <p>Fundamental Knowledge</p>
+                </div>
+                <div class="skill-item">
+                    <h3>C++</h3>
+                    <p>Core Knowledge</p>
+                </div>
+                <div class="skill-item">
+                    <h3>HTML</h3>
+                    <p>Initial Knowledge</p>
+                </div>
+            </div>
+        </section>
+    </div>
 
-    
+    <!-- Contact Section -->
+    <div class="section-white">
+        <section id="contact">
+            <h2 class="section-title">Get In Touch</h2>
+            <p style="text-align: center; color: var(--gray); margin-bottom: 2rem;">Feel free to reach out via WhatsApp or email!</p>
+            
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-icon">📧</div>
+                    <h3>Email</h3>
+                    <a href="mailto:karenjosephwilliams@gmail.com">karenjosephwilliams@gmail.com</a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">📱</div>
+                    <h3>Phone</h3>
+                    <a href="tel:+918113015240">+91 8113015240</a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">📍</div>
+                    <h3>Location</h3>
+                    <p>Kerala</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">💼</div>
+                    <h3>LinkedIn</h3>
+                    <a href="https://www.linkedin.com/in/karen-joseph-williams-35987821a" target="_blank">Connect with me</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Karen Joseph Williams. All rights reserved.</p>
+        <p>Pursuing Excellence in Technology</p>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
